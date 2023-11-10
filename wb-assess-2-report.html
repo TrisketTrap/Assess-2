@@ -1,0 +1,318 @@
+<html><head><meta charset="utf-8"/><title>Unit 2 Assessment: Test Report</title><style type="text/css">html,
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+body {
+  padding: 2rem 1rem;
+  font-size: 0.85rem;
+}
+.jesthtml-content {
+  margin: 0 auto;
+  max-width: 70rem;
+}
+header {
+  display: flex;
+  align-items: center;
+}
+#title {
+  margin: 0;
+  flex-grow: 1;
+}
+#logo {
+  height: 4rem;
+}
+#timestamp {
+  color: #777;
+  margin-top: 0.5rem;
+}
+
+/** SUMMARY */
+#summary {
+  color: #333;
+  margin: 2rem 0;
+  display: flex;
+  font-family: monospace;
+  font-size: 1rem;
+}
+#summary > div {
+  margin-right: 2rem;
+  background: #eee;
+  padding: 1rem;
+  min-width: 15rem;
+}
+#summary > div:last-child {
+  margin-right: 0;
+}
+@media only screen and (max-width: 720px) {
+  #summary {
+    flex-direction: column;
+  }
+  #summary > div {
+    margin-right: 0;
+    margin-top: 2rem;
+  }
+  #summary > div:first-child {
+    margin-top: 0;
+  }
+}
+
+.summary-total {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.summary-passed {
+  color: #4f8a10;
+  border-left: 0.4rem solid #4f8a10;
+  padding-left: 0.5rem;
+}
+.summary-failed,
+.summary-obsolete-snapshots {
+  color: #d8000c;
+  border-left: 0.4rem solid #d8000c;
+  padding-left: 0.5rem;
+}
+.summary-pending {
+  color: #9f6000;
+  border-left: 0.4rem solid #9f6000;
+  padding-left: 0.5rem;
+}
+.summary-empty {
+  color: #999;
+  border-left: 0.4rem solid #999;
+}
+
+.test-result {
+  padding: 1rem;
+  margin-bottom: 0.25rem;
+}
+.test-result:last-child {
+  border: 0;
+}
+.test-result.passed {
+  background-color: #dff2bf;
+  color: #4f8a10;
+}
+.test-result.failed {
+  background-color: #ffbaba;
+  color: #d8000c;
+}
+.test-result.pending {
+  background-color: #ffdf61;
+  color: #9f6000;
+}
+
+.test-info {
+  display: flex;
+  justify-content: space-between;
+}
+.test-suitename {
+  width: 20%;
+  text-align: left;
+  font-weight: bold;
+  word-break: break-word;
+}
+.test-title {
+  width: 40%;
+  text-align: left;
+  font-style: italic;
+}
+.test-status {
+  width: 20%;
+  text-align: right;
+}
+.test-duration {
+  width: 10%;
+  text-align: right;
+  font-size: 0.75rem;
+}
+
+.failureMessages {
+  padding: 0 1rem;
+  margin-top: 1rem;
+  border-top: 1px dashed #d8000c;
+}
+.failureMessages.suiteFailure {
+  border-top: none;
+}
+.failureMsg {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+.suite-container {
+  margin-bottom: 2rem;
+}
+.suite-container > input[type="checkbox"] {
+  position: absolute;
+  left: -100vw;
+}
+.suite-container label {
+  display: block;
+}
+.suite-container .suite-tests {
+  overflow-y: hidden;
+  height: 0;
+}
+.suite-container > input[type="checkbox"]:checked ~ .suite-tests {
+  height: auto;
+  overflow: visible;
+}
+.suite-info {
+  padding: 1rem;
+  background-color: #eee;
+  color: #777;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+.suite-info:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+.suite-info .suite-path {
+  word-break: break-all;
+  flex-grow: 1;
+  font-family: monospace;
+  font-size: 1rem;
+}
+.suite-info .suite-time {
+  margin-left: 0.5rem;
+  padding: 0.2rem 0.3rem;
+  font-size: 0.75rem;
+}
+.suite-info .suite-time.warn {
+  background-color: #d8000c;
+  color: #fff;
+}
+.suite-info:before {
+  content: "\2303";
+  display: inline-block;
+  margin-right: 0.5rem;
+  transform: rotate(0deg);
+}
+.suite-container > input[type="checkbox"]:checked ~ label .suite-info:before {
+  transform: rotate(180deg);
+}
+
+/* CONSOLE LOGS */
+.suite-consolelog {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: #efefef;
+}
+.suite-consolelog-header {
+  font-weight: bold;
+}
+.suite-consolelog-item {
+  padding: 0.5rem;
+}
+.suite-consolelog-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-consolelog-item-origin {
+  color: #777;
+  font-weight: bold;
+}
+.suite-consolelog-item-message {
+  color: #000;
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+
+/* OBSOLETE SNAPSHOTS */
+.suite-obsolete-snapshots {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: #ffbaba;
+  color: #d8000c;
+}
+.suite-obsolete-snapshots-header {
+  font-weight: bold;
+}
+.suite-obsolete-snapshots-item {
+  padding: 0.5rem;
+}
+.suite-obsolete-snapshots-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-obsolete-snapshots-item-message {
+  color: #000;
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+</style></head><body><div class="jesthtml-content"><header><h1 id="title">Unit 2 Assessment: Test Report</h1><img id="logo" src="https://ed.devmountain.com/static/images/dm-logo.56952e1da050.png"/></header><div id="metadata-container"><div id="timestamp">Started: 2023-11-10 09:50:49</div><div id="summary"><div id="suite-summary"><div class="summary-total">Suites (4)</div><div class="summary-passed  summary-empty">0 passed</div><div class="summary-failed ">4 failed</div><div class="summary-pending  summary-empty">0 pending</div></div><div id="test-summary"><div class="summary-total">Tests (39)</div><div class="summary-passed ">3 passed</div><div class="summary-failed ">36 failed</div><div class="summary-pending  summary-empty">0 pending</div></div></div></div><div id="suite-1" class="suite-container"><input id="collapsible-0" type="checkbox" class="toggle" checked="checked"/><label for="collapsible-0"><div class="suite-info"><div class="suite-path">C:\Users\gledb\src\wb-assess-2\src\tests\objects.test.js</div><div class="suite-time">4.461s</div></div></label><div class="suite-tests"><div class="test-result failed"><div class="test-info"><div class="test-suitename">objects.js &gt; getNames</div><div class="test-title">should return an array of names</div><div class="test-status">failed</div><div class="test-duration">0.013s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toEqual(expected) // deep equality
+
+Expected: ["Gale Dekarios", "Wyll Ravengard", "Karlach Cliffgate", "Astarion Ancunin", "Jenevelle Hallowleaf", "Minthara Baenre"]
+Received: undefined</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">objects.js &gt; getNameUsingDestructuring</div><div class="test-title">should use object destructuring to get the firstName and lastName</div><div class="test-status">failed</div><div class="test-duration">0.002s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expected firstName to be part of object destructuring but an identifier matching that name was not found.</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">objects.js &gt; getNameUsingDestructuring</div><div class="test-title">should return a person's full name based on their firstName and lastName</div><div class="test-status">failed</div><div class="test-duration">0.004s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toEqual(expected) // deep equality
+
+Expected: "Gale Dekarios"
+Received: undefined</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">objects.js &gt; getPeopleByLocation</div><div class="test-title">should return an array of people in the given location</div><div class="test-status">failed</div><div class="test-duration">0.002s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toEqual(expected) // deep equality
+
+Expected: [{"firstName": "Wyll", "lastName": "Ravengard", "location": "Baldur's Gate"}, {"firstName": "Astarion", "lastName": "Ancunin", "location": "Baldur's Gate"}, {"firstName": "Jenevelle", "lastName": "Hallowleaf", "location": "Baldur's Gate"}]
+Received: undefined</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">objects.js &gt; translateToPirateTalk</div><div class="test-title">should translate a phrase to pirate talk</div><div class="test-status">failed</div><div class="test-duration">0.001s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toEqual(expected) // deep equality
+
+Expected: "ahoy world"
+Received: undefined</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">objects.js &gt; wordCount</div><div class="test-title">should return the number of occurrences for each word in a phrase</div><div class="test-status">failed</div><div class="test-duration">0.001s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toEqual(expected) // deep equality
+
+Expected: {"hello": 1, "world": 1}
+Received: undefined</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">objects.js &gt; isBugAvailable</div><div class="test-title">should return true if the bug is available in the given month</div><div class="test-status">failed</div><div class="test-duration">0.001s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: undefined</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">objects.js &gt; buildBugHuntCalendar</div><div class="test-title">should return an object of months and names of bugs available during that month</div><div class="test-status">failed</div><div class="test-duration">0.002s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toEqual(expected) // deep equality
+
+Expected: {"1": ["common butterfly"], "10": ["common butterfly", "yellow butterfly", "long locust"], "11": ["common butterfly", "long locust"], "12": ["common butterfly"], "2": ["common butterfly"], "3": ["common butterfly", "yellow butterfly"], "4": ["common butterfly", "yellow butterfly", "long locust"], "5": ["common butterfly", "yellow butterfly", "long locust"], "6": ["common butterfly", "yellow butterfly", "long locust"], "7": ["long locust"], "8": ["long locust"], "9": ["common butterfly", "yellow butterfly", "long locust"]}
+Received: undefined</pre></div></div></div></div><div id="suite-2" class="suite-container"><input id="collapsible-1" type="checkbox" class="toggle" checked="checked"/><label for="collapsible-1"><div class="suite-info"><div class="suite-path">C:\Users\gledb\src\wb-assess-2\src\tests\arrow-fns.test.js</div><div class="suite-time warn">5.652s</div></div></label><div class="suite-tests"><div class="test-result failed"><div class="test-info"><div class="test-suitename">arrow-fns.js &gt; giveMeTwo</div><div class="test-title">should be an arrow function</div><div class="test-status">failed</div><div class="test-duration">0.012s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expected giveMeTwo to be an arrow function</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">arrow-fns.js &gt; giveMeTwo</div><div class="test-title">should return 2</div><div class="test-status">failed</div><div class="test-duration">0.002s</div></div><div class="failureMessages"> <pre class="failureMsg">TypeError: arrowFns.giveMeTwo is not a function</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">arrow-fns.js &gt; addNums</div><div class="test-title">should be an arrow function</div><div class="test-status">failed</div><div class="test-duration">0.001s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expected addNums to be an arrow function</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">arrow-fns.js &gt; addNums</div><div class="test-title">should return the sum of two numbers</div><div class="test-status">failed</div><div class="test-duration">0s</div></div><div class="failureMessages"> <pre class="failureMsg">TypeError: arrowFns.addNums is not a function</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">arrow-fns.js &gt; max</div><div class="test-title">should be an arrow function</div><div class="test-status">failed</div><div class="test-duration">0.001s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expected max to be an arrow function</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">arrow-fns.js &gt; max</div><div class="test-title">should return the largest of two numbers</div><div class="test-status">failed</div><div class="test-duration">0.001s</div></div><div class="failureMessages"> <pre class="failureMsg">TypeError: arrowFns.max is not a function</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">arrow-fns.js &gt; evens</div><div class="test-title">should return an array of even numbers</div><div class="test-status">failed</div><div class="test-duration">0.004s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toEqual(expected) // deep equality
+
+Expected: [2, 4]
+Received: undefined</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">arrow-fns.js &gt; createGreetings</div><div class="test-title">should return an array of greetings</div><div class="test-status">failed</div><div class="test-duration">0.001s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toEqual(expected) // deep equality
+
+Expected: ["Hello, Clive!", "Hello, Jill!", "Hello, Torgal!"]
+Received: undefined</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">arrow-fns.js &gt; loudLongWords</div><div class="test-title">should return an array of uppercased words longer than 4 characters</div><div class="test-status">failed</div><div class="test-duration">0.002s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toEqual(expected) // deep equality
+
+Expected: ["APPLE", "PINATA"]
+Received: undefined</pre></div></div></div></div><div id="suite-3" class="suite-container"><input id="collapsible-2" type="checkbox" class="toggle" checked="checked"/><label for="collapsible-2"><div class="suite-info"><div class="suite-path">C:\Users\gledb\src\wb-assess-2\src\tests\html-css.test.js</div><div class="suite-time warn">7.341s</div></div></label><div class="suite-tests"><div class="test-result failed"><div class="test-info"><div class="test-suitename">index.html &gt; Global styles</div><div class="test-title">should have a black background</div><div class="test-status">failed</div><div class="test-duration">0.13s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: "rgb(0, 0, 0)"
+Received: "rgba(0, 0, 0, 0)"</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">index.html &gt; Global styles</div><div class="test-title">should have white text</div><div class="test-status">failed</div><div class="test-duration">0.051s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: "rgb(255, 255, 255)"
+Received: "rgb(0, 0, 0)"</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">index.html &gt; Global styles</div><div class="test-title">should use a sans-serif font</div><div class="test-status">failed</div><div class="test-duration">0.043s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toMatch(expected)
+
+Expected pattern: /sans-serif/
+Received string:  "\"Times New Roman\""</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">index.html &gt; HTML form</div><div class="test-title">the page should have a form element</div><div class="test-status">failed</div><div class="test-duration">0.548s</div></div><div class="failureMessages"> <pre class="failureMsg">TimeoutError: Element form not found
+Waiting failed: 500ms exceeded</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">index.html &gt; HTML form</div><div class="test-title">the form should have a text input field</div><div class="test-status">failed</div><div class="test-duration">0.597s</div></div><div class="failureMessages"> <pre class="failureMsg">TimeoutError: Element form input[type="text"] not found
+Waiting failed: 500ms exceeded</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">index.html &gt; HTML form</div><div class="test-title">the form should have radio buttons for "Jedi" and "Sith" options</div><div class="test-status">failed</div><div class="test-duration">0.54s</div></div><div class="failureMessages"> <pre class="failureMsg">TimeoutError: Element form input[type="radio"][value="jedi"] not found
+Waiting failed: 500ms exceeded</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">index.html &gt; HTML form</div><div class="test-title">the form should have a dropdown menu for selecting colors Blue, Green, Red, and Purple</div><div class="test-status">failed</div><div class="test-duration">0.533s</div></div><div class="failureMessages"> <pre class="failureMsg">TimeoutError: Element select[name*="lightsaber"] not found
+Waiting failed: 500ms exceeded</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">index.html &gt; HTML form</div><div class="test-title">the form should have a submit button</div><div class="test-status">failed</div><div class="test-duration">0.541s</div></div><div class="failureMessages"> <pre class="failureMsg">TimeoutError: Element form *[type="submit"] not found
+Waiting failed: 500ms exceeded</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">index.html &gt; Table with character data</div><div class="test-title">the page should have a table element</div><div class="test-status">failed</div><div class="test-duration">0.527s</div></div><div class="failureMessages"> <pre class="failureMsg">TimeoutError: Element table not found
+Waiting failed: 500ms exceeded</pre></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">index.html &gt; Table with character data</div><div class="test-title">all cells in the table should have a 1px white border</div><div class="test-status">passed</div><div class="test-duration">0.015s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">index.html &gt; Table with character data</div><div class="test-title">all cells in the table should 5px of padding on all sides</div><div class="test-status">passed</div><div class="test-duration">0.02s</div></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">index.html &gt; Table with character data</div><div class="test-title">should have 50px of space above the table</div><div class="test-status">failed</div><div class="test-duration">0.026s</div></div><div class="failureMessages"> <pre class="failureMsg">TypeError: Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'.</pre></div></div></div></div><div id="suite-4" class="suite-container"><input id="collapsible-3" type="checkbox" class="toggle" checked="checked"/><label for="collapsible-3"><div class="suite-info"><div class="suite-path">C:\Users\gledb\src\wb-assess-2\src\tests\js-dom.test.js</div><div class="suite-time warn">16.294s</div></div></label><div class="suite-tests"><div class="test-result failed"><div class="test-info"><div class="test-suitename">js-dom.js &gt; Log in/log out button</div><div class="test-title">button text changes from "Log in" to "Log out" when clicked</div><div class="test-status">failed</div><div class="test-duration">2.673s</div></div><div class="failureMessages"> <pre class="failureMsg">TimeoutError: Element button (text: "Log out") not found
+Waiting failed: 500ms exceeded</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">js-dom.js &gt; Log in/log out button</div><div class="test-title">button text changes from "Log out" to "Log in" when clicked</div><div class="test-status">failed</div><div class="test-duration">0.597s</div></div><div class="failureMessages"> <pre class="failureMsg">TimeoutError: Element button (text: "Log out") not found
+Waiting failed: 500ms exceeded</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">js-dom.js &gt; Send an alert</div><div class="test-title">sends an alert with text from the input on form submit</div><div class="test-status">failed</div><div class="test-duration">2.047s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: thrown: "Exceeded timeout of 2000 ms for a test.
+Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">js-dom.js &gt; Add an item</div><div class="test-title">adds an item to the list after double-clicking the button</div><div class="test-status">failed</div><div class="test-duration">0.614s</div></div><div class="failureMessages"> <pre class="failureMsg">TimeoutError: Element #list &gt; li:nth-child(4) not found
+Waiting failed: 500ms exceeded</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">js-dom.js &gt; Change colors</div><div class="test-title">clicking on the "Turn stuff blue" button changes the color of the .changes-color elements</div><div class="test-status">failed</div><div class="test-duration">0.108s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toEqual(expected) // deep equality
+
+Expected: "rgb(0, 0, 255)"
+Received: "rgb(0, 0, 0)"</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">js-dom.js &gt; Change colors</div><div class="test-title">clicking on the "Turn stuff red" button changes the color of the .changes-color elements</div><div class="test-status">failed</div><div class="test-duration">0.062s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toEqual(expected) // deep equality
+
+Expected: "rgb(255, 0, 0)"
+Received: "rgb(0, 0, 0)"</pre></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">js-dom.js &gt; Change colors</div><div class="test-title">clicking on the "Turn stuff blue/red" buttons leaves the color of other elements black</div><div class="test-status">passed</div><div class="test-duration">0.094s</div></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">js-dom.js &gt; Calculate factorial</div><div class="test-title">displays the factorial of the number entered into the form</div><div class="test-status">failed</div><div class="test-duration">2.024s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: thrown: "Exceeded timeout of 2000 ms for a test.
+Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">js-dom.js &gt; Validate a form</div><div class="test-title">shows red feedback message "The word must be at least 4 characters long" when submitting an invalid word</div><div class="test-status">failed</div><div class="test-duration">2.256s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: thrown: "Exceeded timeout of 2000 ms for a test.
+Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">js-dom.js &gt; Validate a form</div><div class="test-title">shows green feedback message "Thanks for your submission!" when submitting a valid word</div><div class="test-status">failed</div><div class="test-duration">2.028s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: thrown: "Exceeded timeout of 2000 ms for a test.
+Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."</pre></div></div></div></div></div><script src="jesthtmlreporter.script.js"></script></body></html>
